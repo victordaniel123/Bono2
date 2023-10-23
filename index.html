@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Bono</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: url('https://media.tenor.com/CumYwgqlbKMAAAAC/magic-tree.gif') no-repeat center center fixed;
+            background-size: cover;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+           background-color: rgba(253, 202, 225, 0.5);
+            padding: 29px;
+            border-radius: 25px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            border: 2px solid rgba(253, 202, 225, 0.5); /* Contorno rosa claro y transparente */
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            text-align: left;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+       /* Estilos CSS (los mismos que antes) */
+    </style>
+</head>
+<body>
+     <!-- Contenedor del icono del menú y su contorno blanco transparente -->
+     <div class="menu-container">
+            <!-- Icono del menú -->
+            <div class="menu-icon">
+                <div class="menu-bar"></div>
+                <div class="menu-bar"></div>
+                <div class="menu-bar"></div>
+            </div>
+        </div>
+     <!-- Menú desplegable -->
+                    <div class="menu">
+                        <ul>
+                            <li><a href="https://victordaniel123.github.io/menu/">Inicio</a></li>
+                            <li><a href="https://victordaniel123.github.io/pagina_victor/">finalizar sesion</a></li>
+                        </ul>
+                    </div>
+    <div class="container">
+        <h1>Calculadora de Bono</h1>
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre">
+        </div>
+        <div class="form-group">
+            <label for="depto">Departamento:</label>
+            <input type="text" id="depto">
+        </div>
+        <div class="form-group">
+            <label for="sueldoDiario">Sueldo Diario:</label>
+            <input type="number" id="sueldoDiario">
+        </div>
+        <div class="form-group">
+            <label for="antiguedad">Antigüedad (años):</label>
+            <input type="number" id="antiguedad">
+        </div>
+        <div class="form-group">
+            <label for="diasTrabajo">Días de Trabajo:</label>
+            <input type="number" id="diasTrabajo">
+        </div>
+
+        <button onclick="calcularBono()">Calcular Bono</button>
+
+        <h2>Resultados:</h2>
+        <table>
+            <tr>
+                <th>Subtotal</th>
+                <td id="subtotal"></td>
+            </tr>
+            <tr>
+                <th>Bono</th>
+                <td id="bono"></td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td id="total"></td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        function calcularBono() {
+            var nombre = document.getElementById("nombre").value;
+            var sueldoDiario = parseFloat(document.getElementById("sueldoDiario").value);
+            var antiguedad = parseInt(document.getElementById("antiguedad").value);
+            var diasTrabajo = parseInt(document.getElementById("diasTrabajo").value);
+
+            var subtotal = sueldoDiario * diasTrabajo;
+            var bono;
+
+            if (antiguedad > 15) {
+                bono = subtotal * 0.3;
+            } else {
+                bono = subtotal * 0.15;
+            }
+
+            var total = subtotal + bono;
+
+            // Muestra los resultados en la tabla
+            document.getElementById("subtotal").textContent = '$' + subtotal.toFixed(2);
+            document.getElementById("bono").textContent = '$' + bono.toFixed(2);
+            document.getElementById("total").textContent = '$' + total.toFixed(2);
+
+            var resultado = confirm("Hola, " + nombre + "! Tu bono es: $" + bono.toFixed(2) + ". ¿Estás de acuerdo con este resultado?");
+            if (resultado) {
+                alert("¡Perfecto! Gracias por confirmar.");
+            } else {
+                alert("Por favor, contacta al departamento de recursos humanos para más detalles.");
+            }
+        }
+    </script>
+        <script src="script.js"></script>
+
+</body>
+</html>
